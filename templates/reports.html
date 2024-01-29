@@ -1,0 +1,54 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Reports</title>
+</head>
+<body>
+<h1>Reports</h1>
+<form action="/generate_report" method="POST">
+<label for="start_date">Start Date:</label>
+<input type="date" name="start_date" id="start_date">
+<br>
+<label for="end_date">End Date:</label>
+<input type="date" name="end_date" id="end_date">
+<br>
+<label for="type">Type:</label>
+<select name="type" id="type">
+<option value="all">All</option>
+<option value="food">Food</option>
+<option value="rent">Rent</option>
+<option value="utilities">Utilities</option>
+<option value="other">Other</option>
+</select>
+<br>
+<input type="submit" value="Generate Report">
+</form>
+<br>
+{% if expenses %}
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Type</th>
+<th>Amount</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+{% for expense in expenses %}
+<tr>
+<td>{{ expense.date }}</td>
+<td>{{ expense.type }}</td>
+<td>{{ expense.amount }}</td>
+<td>{{ expense.description }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+</body>
+</html>
+
